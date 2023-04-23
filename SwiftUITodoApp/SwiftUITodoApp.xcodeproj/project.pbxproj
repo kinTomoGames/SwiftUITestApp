@@ -11,6 +11,10 @@
 		24C3E67E29F520D300657ACF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C3E67D29F520D300657ACF /* ContentView.swift */; };
 		24C3E68029F520D600657ACF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C3E67F29F520D600657ACF /* Assets.xcassets */; };
 		24C3E68329F520D600657ACF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C3E68229F520D600657ACF /* Preview Assets.xcassets */; };
+		24C3E68A29F52AC000657ACF /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C3E68929F52AC000657ACF /* ListRow.swift */; };
+		24C3E68C29F52ECC00657ACF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C3E68B29F52ECC00657ACF /* UserData.swift */; };
+		24C3E68E29F52FA900657ACF /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C3E68D29F52FA900657ACF /* UserTask.swift */; };
+		24C3E69029F5763F00657ACF /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C3E68F29F5763F00657ACF /* Draft.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		24C3E67D29F520D300657ACF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		24C3E67F29F520D600657ACF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24C3E68229F520D600657ACF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		24C3E68929F52AC000657ACF /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		24C3E68B29F52ECC00657ACF /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		24C3E68D29F52FA900657ACF /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
+		24C3E68F29F5763F00657ACF /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				24C3E67B29F520D300657ACF /* SwiftUITodoAppApp.swift */,
 				24C3E67D29F520D300657ACF /* ContentView.swift */,
+				24C3E68929F52AC000657ACF /* ListRow.swift */,
+				24C3E68B29F52ECC00657ACF /* UserData.swift */,
+				24C3E68D29F52FA900657ACF /* UserTask.swift */,
+				24C3E68F29F5763F00657ACF /* Draft.swift */,
 				24C3E67F29F520D600657ACF /* Assets.xcassets */,
 				24C3E68129F520D600657ACF /* Preview Content */,
 			);
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C3E68E29F52FA900657ACF /* UserTask.swift in Sources */,
 				24C3E67E29F520D300657ACF /* ContentView.swift in Sources */,
 				24C3E67C29F520D300657ACF /* SwiftUITodoAppApp.swift in Sources */,
+				24C3E69029F5763F00657ACF /* Draft.swift in Sources */,
+				24C3E68C29F52ECC00657ACF /* UserData.swift in Sources */,
+				24C3E68A29F52AC000657ACF /* ListRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
