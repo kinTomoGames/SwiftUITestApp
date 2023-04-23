@@ -33,12 +33,16 @@ struct ContentView: View {
     @State private var isShowingSheet = false
     
     var body: some View {
-        Button(action: {
-            isShowingSheet = true
-        }) {
-            Text("テスト用のシート表示")
-        }
-        .fullScreenCover(isPresented: $isShowingSheet, content: {
+        Toggle("トグルのテキスト", isOn: $isShowingSheet)
+            .padding(10)
+            .disabled(isShowingSheet)
+        
+//        Button(action: {
+//            isShowingSheet = true
+//        }) {
+//            Text("テスト用のシート表示")
+//        }
+        .sheet(isPresented: $isShowingSheet, content: {
             testSheet(isShowingSheet: $isShowingSheet)
         })
     }
