@@ -30,58 +30,30 @@ struct ContentView: View {
     
     @ObservedObject var userData = UserData(name: "田中", age: 20)
     
-    init(battingOrderData: BattingOrder) {
-        print("\(battingOrderData.num)")
-        battingOrderDataList.append(battingOrderData)
-    }
+    @State private var isShowingSheet = false
     
     var body: some View {
-        VStack {
-            TextField("テストですよー", text: $textFieldTest)
-                .onSubmit {
-                    textFieldTest = ""
-                    print("エンターが押されたよ")
-                }
-                .padding(50)
-            
-            Image(textFieldTest)
-                .resizable()
-                .frame(height: 300, alignment: .center)
-            
-            
-            ForEach(battingOrderDataList, id: \.num) { data in
-//                Text("\(num)番目")
-                Button(action: {
-                    // ボタンを押下した場合
-                    print("\(data.num)")
-                }) {
-                    Text("\(data.num)番 \(data.pos) \(data.name)")
-                }
-            }
+        Button(action: {
+            isShowingSheet = true
+        }) {
+            Text("テスト用のシート表示")
         }
-        
-//        List {
-//            Text("小笠原")
-//                .padding()
-//            Text("松坂")
-//                .padding()
-//                .foregroundColor(Color.red)
-//                .font(Font.headline)
-//        }
-        
-//        NavigationView {
-//            Text("テキスト")
-//                .navigationBarItems(leading: Image(systemName: "globe").foregroundColor(.accentColor))
-//        }
+        .fullScreenCover(isPresented: $isShowingSheet, content: {
+            testSheet(isShowingSheet: $isShowingSheet)
+        })
     }
 }
 
-func Report() {
-    print("押された？")
+struct testSheet: View {
+    @Binding var isShowingSheet: Bool
+    
+    var body: some View {
+        Text(isShowingSheet.description)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(battingOrderData: BattingOrder(num: 10, pos: "ピッチャー", name: "大谷 翔平"))
+        ContentView()
     }
 }

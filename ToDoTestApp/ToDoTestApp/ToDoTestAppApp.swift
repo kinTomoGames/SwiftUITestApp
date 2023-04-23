@@ -11,7 +11,7 @@ import SwiftUI
 struct ToDoTestAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(battingOrderData: BattingOrder(num: 10, pos: "ピッチャー", name: "大谷 翔平"))
+            ContentView()
         }
     }
 }
