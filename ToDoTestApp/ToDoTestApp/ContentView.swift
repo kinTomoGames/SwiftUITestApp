@@ -26,6 +26,8 @@ struct ContentView: View {
         BattingOrder(num: 8, pos: "レフト", name: "吉田 正尚"),
         BattingOrder(num: 9, pos: "キャッチャー", name: "古田 敦也")]
     
+    @State private var textFieldTest: String = ""
+    
     @ObservedObject var userData = UserData(name: "田中", age: 20)
     
     init(battingOrderData: BattingOrder) {
@@ -34,7 +36,19 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Form {
+        VStack {
+            TextField("テストですよー", text: $textFieldTest)
+                .onSubmit {
+                    textFieldTest = ""
+                    print("エンターが押されたよ")
+                }
+                .padding(50)
+            
+            Image(textFieldTest)
+                .resizable()
+                .frame(height: 300, alignment: .center)
+            
+            
             ForEach(battingOrderDataList, id: \.num) { data in
 //                Text("\(num)番目")
                 Button(action: {
