@@ -42,7 +42,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle(Text("タスク"))
-            .navigationBarItems(trailing: Button("Delete") {
+            .navigationBarItems(trailing: Button("削除") {
                 // 削除処理
                 deleteTask()
             })
