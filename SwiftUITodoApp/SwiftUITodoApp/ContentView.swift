@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var viewContext
+    @FetchRequest(sortDescriptors: []) var taskInfoListDb: FetchedResults<TaskData>
+    
     @EnvironmentObject var userData: UserData
     
     var body: some View {
@@ -18,10 +22,11 @@ struct ContentView: View {
                         guard let index = self.userData.taskList.firstIndex(of: task) else {
                             return
                         }
-                        
-                        self.userData.taskList[index].isComplete.toggle()
+                        // DBを更新する
+                        self.updateTask(index: index)
                     }) {
-                        ListRow(taskName: task.taskName, isComplete: task.isComplete)
+                        ListRow(taskName: task.taskName,
+                                isComplete: task.isComplete)
                     }
                 }
                 
@@ -36,17 +41,66 @@ struct ContentView: View {
                     .font(.title)
                 }
             }
-            .navigationBarTitle(Text("テスト"))
+            .navigationBarTitle(Text("タスク"))
             .navigationBarItems(trailing: Button("Delete") {
                 // 削除処理
-                DeleteTask()
+                deleteTask()
             })
+            .onAppear() {
+                self.initTaskInfoList()
+            }
         }
     }
     
-    func DeleteTask() {
+    /**
+     * タスク情報をDBから取得し、初期化する
+     */
+    func initTaskInfoList() {
+        for taskInfoDb in taskInfoListDb {
+            print("init isComplete:\(taskInfoDb.isComplete)")
+            let taskInfo: TaskInfo = TaskInfo(isComplete: taskInfoDb.isComplete, taskName: taskInfoDb.taskName ?? "Unknown")
+            self.userData.taskList.insert(taskInfo, at: 0)
+        }
+    }
+    
+    /**
+     * タスク情報を更新する
+     */
+    func updateTask(index: Int) {
+        self.userData.taskList[index].isComplete.toggle()
+        
+        let dbCount = self.taskInfoListDb.count - 1
+        self.taskInfoListDb[dbCount - index].isComplete.toggle()
+        
+        do {
+            try viewContext.save()
+        } catch {
+            fatalError("Failed update save")
+        }
+    }
+    
+    /**
+     * タスク情報を削除する
+     */
+    func deleteTask() {
+        // 残タスク取得
         let remainingTask = self.userData.taskList.filter({ !$0.isComplete })
+        // 残タスクにUIを更新する
         self.userData.taskList = remainingTask
+        
+        // 完了状態のタスクをDBから削除
+        for taskInfo in taskInfoListDb {
+            if (taskInfo.isComplete) {
+                print("delete:\(taskInfo.taskName ?? "not")")
+                viewContext.delete(taskInfo)
+            }
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            fatalError("Failed delete save")
+        }
     }
 }
 
