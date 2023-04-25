@@ -30,6 +30,9 @@ struct Draft: View {
         self.taskName = ""
     }
     
+    /**
+     * DBのタスク情報に追加する
+     */
     func addDbTaskInfo(taskInfo: TaskInfo) {
         let taskData = TaskData(context: viewContext)
         
